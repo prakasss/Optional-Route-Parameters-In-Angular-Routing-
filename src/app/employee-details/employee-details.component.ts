@@ -9,9 +9,13 @@ import { ActivatedRoute } from '@angular/router';
 export class EmployeeDetailsComponent implements OnInit {
 
   public EmpID:any;
+  public  EmpName:any;
+  
   ngOnInit(): void {
     let id = this.route.snapshot.paramMap.get('id');
-    this.EmpID= id;
+    let name = this.route.snapshot.paramMap.get('name');
+    this.EmpName= name;
+    this.EmpID =id;
   }
 
   constructor(private route:ActivatedRoute){}
