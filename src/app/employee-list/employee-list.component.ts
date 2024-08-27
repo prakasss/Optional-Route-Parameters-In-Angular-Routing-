@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute,ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-employee-list',
@@ -7,8 +7,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./employee-list.component.css']
 })
 export class EmployeeListComponent implements OnInit{
+  public selectedID:any;
+  
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.route.paramMap.subscribe((params:ParamMap)=>{
+
+      let id = params.get('id');
+      this.selectedID = id;
+    });
   }
 
   MyEmployees=[
@@ -27,9 +33,13 @@ export class EmployeeListComponent implements OnInit{
     {"id":3,"name":"prakash"},
     
   ]
-  constructor(private router :Router){}
+  constructor(private router :Router,private route:ActivatedRoute){}
   EmpClick(employee:any){
      this.router.navigate(['/employees' ,employee.id,employee.name]);
+  }
+
+  isSelected(employee:any){
+    return parseInt( employee.id )===parseFloat( this.selectedID);
   }
 
 }

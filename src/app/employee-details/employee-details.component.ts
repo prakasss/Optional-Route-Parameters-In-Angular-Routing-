@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee-details',
@@ -7,6 +7,12 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./employee-details.component.css']
 })
 export class EmployeeDetailsComponent implements OnInit {
+NextEmp() {
+throw new Error('Method not implemented.');
+}
+PreviousEmp() {
+throw new Error('Method not implemented.');
+}
 
   public EmpID:any;
   public  EmpName:any;
@@ -18,5 +24,10 @@ export class EmployeeDetailsComponent implements OnInit {
     this.EmpID =id;
   }
 
-  constructor(private route:ActivatedRoute){}
+  constructor(private route:ActivatedRoute,private router:Router){}
+
+  goToEmployees(){
+    let selectedID = this.EmpID;
+    this.router.navigate(['/employees',{id:selectedID}]);
+  }
 }
